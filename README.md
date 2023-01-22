@@ -162,7 +162,7 @@ There are many other usage, see [SERVICES.TXT](https://cs.android.com/android/pl
 Thanks for Pull Request from [@hfutxqd](https://github.com/openatx/adbutils/pull/27)
 
 ## Run shell command
-I assume there is only one device connected.
+我假设只有一个设备连接
 
 ```python
 import io
@@ -172,26 +172,26 @@ d = adb.device()
 
 print(d.serial) # 获取序列号
 
-# Argument support list, str
+# 参数支持list, str
 serial = d.shell(["getprop", "ro.serial"]) # 获取Prop信息
 
-# Same as
+# 等同于
 serial = d.shell("getprop ro.serial")
 
-# Set timeout for shell command
+# 设置shell命令的超时
 d.shell("sleep 1", timeout=0.5) # Should raise adbutils.AdbTimeout
 
-# The advanced shell (returncode archieved by add command suffix: ;echo EXIT:$?)
+# 高级shell (return code archieved by add command suffix: ;echo EXIT:$?)
 ret = d.shell2("echo 1")
 print(ret)
 # expect: ShellReturn(args='echo 1', returncode=0, output='1\n')
 
-# show property, also based on d.shell
+# 显示属性, 也基于 d.shell
 print(d.prop.name) # output example: surabaya
 d.prop.model
 d.prop.device
 d.prop.get("ro.product.model")
-d.prop.get("ro.product.model", cache=True) # a little faster, use cache data first
+d.prop.get("ro.product.model", cache=True) #速度稍快，先使用缓存数据
 
 d.get_serialno() # same as adb get-serialno
 d.get_devpath() # same as adb get-devpath
